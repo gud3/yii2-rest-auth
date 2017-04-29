@@ -22,10 +22,68 @@ or add
 to the require section of your `composer.json` file.
 
 
+Need
+----
+
+You need to override the static function in the 'Users' table:
+```php
+    public static function findIdentityByAccessToken($id, $type = null)
+    {
+        return static::find()->where(['id' => $id])->one() || false;
+    }
+```
+
+
 Usage
 -----
 
-Once the extension is installed, simply use it in your code by  :
+To use this extension, simply add the following code in your controller behaviors:
 
 ```php
-<?= \gud3\restAuth\AutoloadExample::widget(); ?>```
+    public function behaviors()
+    {
+        $behaviors = parent::behaviors();
+        
+        $auth = ['index'];
+        //$auth = ['index', 'update', 'create', 'etc..'];
+        $behaviors['authenticator']['class'] = \gud3\restAuth\CheckToken::className();
+        $behaviors['authenticator']['only'] = $auth;
+
+        return $behaviors;
+    }
+```
+
+For check exist Authorized data in headers:
+
+```php
+    public function behaviors()
+    {
+        $behaviors = parent::behaviors();
+        
+        $auth = [];
+        
+        if (\gud3\restAuth\CheckToken::isAuth()) {
+        array_push($auth, 'index', 'create');
+        }
+            
+        $behaviors['authenticator']['class'] = \gud3\restAuth\CheckToken::className();
+        $behaviors['authenticator']['only'] = $auth;
+        
+        return $behaviors;
+    }
+```
+This is necessary to check if there are authorization data, then check them, and if it is successful, authorize or go through the system without authorization, then Yii::$app->user->isGuest = true
+
+
+Change storage
+--------------
+
+To store the session in the radish, you need to  :
+
+```php
+    'components' => [
+        'cache' => [
+                'class' => 'yii\redis\Cache',
+            ],
+        ]
+```
