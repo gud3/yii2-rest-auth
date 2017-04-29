@@ -1,0 +1,21 @@
+{
+    "name": "gud3/yii2-rest-auth",
+    "description": "Authorization for rest, which is made for increased security.",
+    "type": "yii2-extension",
+    "keywords": ["yii2"," yii2 rest"," yii2 rest authorized"],
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Evgenii Kirichenko",
+            "email": "gud3.ini@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "~2.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "gud3\\restAuth\\": ""
+        }
+    }
+}
