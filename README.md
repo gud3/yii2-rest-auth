@@ -33,6 +33,12 @@ or add
 to the require section of your `composer.json` file.
 
 
+Migration enter in code line:
+```
+yii migrate --migrationPath=@gud3/restAuth/migrations
+```
+
+
 Need
 ----
 
