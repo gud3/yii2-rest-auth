@@ -74,7 +74,7 @@ public function behaviors()
     $auth = [];
     
     if (\gud3\restAuth\CheckToken::isAuth()) {
-    array_push($auth, 'index', 'create');
+        array_push($auth, 'index', 'create');
     }
         
     $behaviors['authenticator']['class'] = \gud3\restAuth\CheckToken::className();
