@@ -27,7 +27,7 @@ php composer.phar require --prefer-dist gud3/yii2-rest-auth "*"
 or add
 
 ```
-"gud3/yii2-rest-auth": "*"
+"gud3/yii2-rest-auth": ">=1.0.0"
 ```
 
 to the require section of your `composer.json` file.
